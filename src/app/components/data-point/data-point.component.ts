@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import {NgForOf, DecimalPipe } from "@angular/common";
-import {CamelCaseToWordsPipe} from "../../shared/camel-case-to-words.pipe";
+import {NgForOf, DecimalPipe, CurrencyPipe, NgIf, PercentPipe, DatePipe} from "@angular/common";
+import {WidthConversionPipe} from "../../shared/width-conversion";
+import {DataValueComponent} from "../data-value/data-value.component";
 
 @Component({
   selector: 'app-data-point',
@@ -9,7 +10,12 @@ import {CamelCaseToWordsPipe} from "../../shared/camel-case-to-words.pipe";
   imports: [
     DecimalPipe,
     NgForOf,
-    CamelCaseToWordsPipe
+    WidthConversionPipe,
+    CurrencyPipe,
+    NgIf,
+    PercentPipe,
+    DatePipe,
+    DataValueComponent
   ],
   styleUrls: ['./data-point.component.css']
 })

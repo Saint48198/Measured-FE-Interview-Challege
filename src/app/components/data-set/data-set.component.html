@@ -1,20 +1,30 @@
 <div class="data-point">
   <h3>{{ label }}</h3>
   <div *ngFor="let element of elements">
-    <h4>{{ element.displayName }}</h4>
-    <table *ngIf="element.data && element.data.length > 0">
+    <h4 *ngIf="elements && elements.length > 1">{{ element.displayName }}</h4>
+    <table *ngIf="element.data && element.data.length > 0" [style.width]="element.width | widthConversion">
       <thead>
       <tr>
         <!-- Dynamically generate table headers based on fields -->
-        <th *ngFor="let field of element.fields">{{ field.name | camelCaseToWords }}</th>
+        <th *ngFor="let field of element.fields">{{ field.label }}</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let entry of element.data">
+
         <!-- Dynamically fill rows based on field names -->
-        <td *ngFor="let field of element.fields">{{ entry[field.name]}}</td>
+        <td *ngFor="let field of element.fields; let i = index">
+          <app-data-value [value]="entry[field.name]" [digitsInfo]="element.fieldDefinitions[i].digitsInfo" [format]="element.fieldDefinitions[i].format"></app-data-value>
+        </td>
       </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <td *ngFor="let value of totalRow; let i = index">
+            <app-data-value [value]="value" [digitsInfo]="element.fieldDefinitions[i].digitsInfo" [format]="element.fieldDefinitions[i].format"></app-data-value>
+          </td>
+        </tr>
+      </tfoot>
     </table>
     <p *ngIf="!element.data || element.data.length === 0">No data available</p>
   </div>

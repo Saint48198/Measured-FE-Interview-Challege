@@ -1,9 +1,9 @@
 <div class="data-point">
   <h3>{{ label }}</h3>
   <ul>
-    <li *ngFor="let element of elements; index as i">
-      <h4>{{ element.name | camelCaseToWords }}</h4>
-      <span>{{ element.data}}</span>
+    <li *ngFor="let element of elements; index as i" [style.width]="element.width | widthConversion">
+      <h4>{{ element.label }}</h4>
+      <app-data-value [value]="element.data" [digitsInfo]="element.digitsInfo" [format]="element.format"></app-data-value>
     </li>
   </ul>
 </div>

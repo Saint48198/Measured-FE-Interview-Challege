@@ -1,0 +1,8 @@
+<span *ngIf="!isNaN(value) && format === 'currency'">{{ value | currency: 'USD': 'symbol': digitsInfo }}</span>
+<span *ngIf="!isNaN(value) && format === 'percent'">{{ value | percent: digitsInfo }}</span>
+<span *ngIf="!isNaN(value) && format === 'number'">{{ value | number: digitsInfo }}</span>
+<span *ngIf="isNaN(value) && (format === 'currency'
+|| format === 'percent'
+|| format === 'number')">{{ value  }}</span>
+<span *ngIf="format === 'datetime'">{{ value | date: 'yyyy-MM-dd HH:mm:ss' }}</span>
+<span *ngIf="format === 'none'">{{ value }}</span>

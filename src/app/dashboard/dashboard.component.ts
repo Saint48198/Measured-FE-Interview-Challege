@@ -5,11 +5,17 @@ import {DataPointComponent} from "../components/data-point/data-point.component"
 import {DataSetComponent} from "../components/data-set/data-set.component";
 
 interface FieldDefinition {
+  [key: string]: any;
   label: string;
   format: string;
   type: string;
   digitsInfo: string;
   aggFn: string;
+}
+
+interface FieldTitle {
+  name: string;
+  label?: string;
 }
 
 interface LayoutElement {
@@ -24,13 +30,12 @@ interface SectionElement {
   name:string;
   type: string;
   width: number;
+  label: string;
+  digitsInfo: string;
+  format: string;
   data: any;
-}
-
-interface DashboardLayout {
-  displayName: string;
-  fieldDefinitions: { [key: string]: FieldDefinition };
-  layout: LayoutElement[];
+  fields?: FieldTitle[];
+  fieldDefinitions?: FieldDefinition[];
 }
 
 interface DataPoints {
@@ -63,6 +68,7 @@ interface DashboardData {
 })
 export class DashboardComponent implements OnInit {
   layoutSections: LayoutElement[]  = [];
+  fieldDefinitions: FieldDefinition = {} as FieldDefinition;
   data: DashboardData = {} as DashboardData;
   dashboardPageTitle = 'Dashboard';
 
@@ -81,6 +87,7 @@ export class DashboardComponent implements OnInit {
     try {
       const layoutData = await this.dashboardService.getLayout();
       this.layoutSections = layoutData.layout || [];
+      this.fieldDefinitions = layoutData.fieldDefinitions || {};
       this.dashboardPageTitle = layoutData.displayName || 'Dashboard';
     } catch (error) {
       console.error(error);
@@ -111,10 +118,17 @@ export class DashboardComponent implements OnInit {
       const mergedSection: LayoutElement = { ...section };
       if (section.elements && section.elements.length > 0) {
         if (section.type === 'DATA_POINT') {
-          mergedSection.elements = section.elements.map((element: SectionElement) => {
+            mergedSection.elements = section.elements.map((element: SectionElement) => {
             const mergedElement: SectionElement = { ...element };
+
             if (dataResponse.dataPoints[element.name]) {
-              mergedElement.data = dataResponse.dataPoints[element.name];
+              const selectedFieldDefinition: FieldDefinition = this.fieldDefinitions[element.name];
+              const value = dataResponse.dataPoints[element.name];
+
+              mergedElement.format = selectedFieldDefinition.format;
+              mergedElement.digitsInfo = selectedFieldDefinition.digitsInfo;
+              mergedElement.label = selectedFieldDefinition.label;
+              mergedElement.data = value;
             } else {
               console.error('No data found for element:', element);
             }
@@ -124,8 +138,15 @@ export class DashboardComponent implements OnInit {
           mergedSection.elements = section.elements.map((element: SectionElement) => {
             const mergedElement: SectionElement = { ...element };
             const dataSet:DataSet | undefined = dataResponse.dataSets.find((dataSet: DataSet) => dataSet.name === element.name);
-            console.log('Merging data set:', dataSet, 'for element:', mergedElement);
+            const fieldDefinitions: any = [];
+
+            mergedElement.fields?.forEach((field: FieldTitle) => {
+              field.label = this.fieldDefinitions[field.name].label;
+              fieldDefinitions.push(this.fieldDefinitions[field.name]);
+            });
+
             if (dataSet) {
+              mergedElement.fieldDefinitions = fieldDefinitions;
               mergedElement.data = dataSet.data;
             } else {
               console.error('No data found for element:', element);
