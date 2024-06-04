@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { newLayoutResponse, backendDataResponse } from '../dashboard-mock-response';
 
 @Injectable({
@@ -9,11 +8,11 @@ export class DashboardService {
 
   constructor() { }
 
-  getLayout(): Observable<any> {
-    return of(newLayoutResponse);
+  async getLayout(): Promise<any> {
+    return Promise.resolve(newLayoutResponse)
   }
 
-  getData(): Observable<any> {
-    return of(backendDataResponse);
+  async getData(): Promise<any> {
+    return Promise.resolve(backendDataResponse)
   }
 }

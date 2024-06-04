@@ -1,0 +1,21 @@
+<div class="data-point">
+  <h3>{{ label }}</h3>
+  <div *ngFor="let element of elements">
+    <h4>{{ element.displayName }}</h4>
+    <table *ngIf="element.data && element.data.length > 0">
+      <thead>
+      <tr>
+        <!-- Dynamically generate table headers based on fields -->
+        <th *ngFor="let field of element.fields">{{ field.name | camelCaseToWords }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let entry of element.data">
+        <!-- Dynamically fill rows based on field names -->
+        <td *ngFor="let field of element.fields">{{ entry[field.name]}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <p *ngIf="!element.data || element.data.length === 0">No data available</p>
+  </div>
+</div>

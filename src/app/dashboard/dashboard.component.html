@@ -1,6 +1,11 @@
-<div class="dashboard">
-  <app-metrics-overview *ngIf="layout && data" [metrics]="data.overallMetrics"></app-metrics-overview>
-  <app-observed-metrics *ngIf="layout && data" [metrics]="data.observedMetrics"></app-observed-metrics>
-  <app-source-metrics *ngIf="layout && data" [metrics]="data.sourceMetrics"></app-source-metrics>
-  <app-summary-table *ngIf="layout && data" [tableFields]="layout.summaryTable.fields" [tableData]="data.summaryTable"></app-summary-table>
-</div>
+<section class="dashboard">
+  <header>
+    <h1>{{dashboardPageTitle}}</h1>
+  </header>
+  <div *ngFor="let section of layoutSections" class="dashboard-section">
+    <div [ngSwitch]="section.type">
+      <app-data-point *ngIf="section.type === 'DATA_POINT'" [elements]="section.elements" [label]="section.label"></app-data-point>
+      <app-data-set *ngIf="section.type === 'DATA_SET'" [elements]="section.elements" [label]="section.label"></app-data-set>
+    </div>
+  </div>
+</section>
