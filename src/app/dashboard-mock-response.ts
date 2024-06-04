@@ -12,6 +12,9 @@ interface FullDataResponse {
   dataSets: DatasetResponse[];
 }
 
+interface ElementPosition {
+}
+
 interface ElementGroup {
   name: string;
   label: string;

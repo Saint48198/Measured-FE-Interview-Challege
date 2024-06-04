@@ -1,0 +1,26 @@
+.dashboard {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.metrics-overview, .observed-metrics, .source-metrics {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.summary-table th, .summary-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.summary-table th {
+  background-color: #f4f4f4;
+  text-align: left;
+}

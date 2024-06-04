@@ -1,0 +1,12 @@
+<table class="summary-table">
+  <thead>
+  <tr>
+    <th *ngFor="let field of tableFields">{{ field.label }}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let row of tableData">
+    <td *ngFor="let field of tableFields">{{ row[field.name] }}</td>
+  </tr>
+  </tbody>
+</table>

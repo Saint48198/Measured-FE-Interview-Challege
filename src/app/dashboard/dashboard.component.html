@@ -1,0 +1,6 @@
+<div class="dashboard">
+  <app-metrics-overview *ngIf="layout && data" [metrics]="data.overallMetrics"></app-metrics-overview>
+  <app-observed-metrics *ngIf="layout && data" [metrics]="data.observedMetrics"></app-observed-metrics>
+  <app-source-metrics *ngIf="layout && data" [metrics]="data.sourceMetrics"></app-source-metrics>
+  <app-summary-table *ngIf="layout && data" [tableFields]="layout.summaryTable.fields" [tableData]="data.summaryTable"></app-summary-table>
+</div>
