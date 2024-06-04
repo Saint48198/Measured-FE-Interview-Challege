@@ -53,7 +53,7 @@ export class DataSetComponent {
 
               return acc + item[currentKey];
             }, 0) / data.length;
-            
+
             totalRow.push(avg);
           } else {
             totalRow.push('');

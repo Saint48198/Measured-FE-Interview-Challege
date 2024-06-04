@@ -2,7 +2,7 @@
   <h3>{{ label }}</h3>
   <div *ngFor="let element of elements">
     <h4 *ngIf="elements && elements.length > 1">{{ element.displayName }}</h4>
-    <table *ngIf="element.data && element.data.length > 0" [style.width]="element.width | widthConversion">
+    <table class="data-table" *ngIf="element.data && element.data.length > 0" [style.width]="element.width | widthConversion">
       <thead>
       <tr>
         <!-- Dynamically generate table headers based on fields -->

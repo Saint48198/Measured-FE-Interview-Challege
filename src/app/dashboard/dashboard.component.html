@@ -1,6 +1,22 @@
 <section class="dashboard">
   <header>
     <h1>{{dashboardPageTitle}}</h1>
+    <menu>
+      <button type="button">
+        <div class="dot-menu">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+        Reports
+        <span class="caret down"></span>
+      </button>
+    </menu>
   </header>
   <div *ngFor="let section of layoutSections" class="dashboard-section">
     <div [ngSwitch]="section.type">

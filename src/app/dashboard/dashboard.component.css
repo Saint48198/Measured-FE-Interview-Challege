@@ -1,26 +1,45 @@
 .dashboard {
   font-family: Arial, sans-serif;
   margin: 20px;
+  color: #333;
 }
 
-.metrics-overview, .observed-metrics, .source-metrics {
+header {
+  background-color: #231090;
+  color: white;
+  text-align: center;
+  padding: 10px;
   display: flex;
-  justify-content: space-around;
-  margin: 20px 0;
 }
 
-.summary-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
+header h1 {
+  margin-right: auto;
 }
 
-.summary-table th, .summary-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
+/* dot icon in the header menu drop down */
+.dot-menu {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 3px; /* Adjust the gap between dots */
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
 }
 
-.summary-table th {
-  background-color: #f4f4f4;
-  text-align: left;
+.dot {
+  width: 3px; /* Diameter of the dot */
+  height: 3px; /* Diameter of the dot */
+  background-color: #000; /* Color of the dot */
+  border-radius: 50%; /* Makes the square a circle */
+}
+
+/* the down caret icon in the header menu drop down */
+.caret {
+  width: 0;
+  height: 0;
+  display: inline-block;
+  border: 4px solid transparent;
+}
+.caret.down{
+  border-top-color: black;
 }

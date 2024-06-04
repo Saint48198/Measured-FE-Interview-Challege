@@ -1,3 +1,30 @@
-h4, th {
-  text-transform: capitalize;
+
+
+h3 {
+  font-size: 16px;
+  color: #666;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 5px;
+
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.data-table th {
+  background-color: #f4f4f4;
+}
+
+.data-table tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
