@@ -100,7 +100,10 @@ div.dashboard-section.one-quarter {
 }
 
 @media (max-width: 768px) {
-  div.dashboard-section, div.dashboard-section.half, div.dashboard-section.one-third, div.dashboard-section.one-quarter {
+  div.dashboard-section,
+  div.dashboard-section.half,
+  div.dashboard-section.one-third,
+  div.dashboard-section.one-quarter {
     flex: 0 0 100%;
   }
 }
