@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, ViewEncapsulation} from '@angular/core';
 import {CurrencyPipe, DatePipe, DecimalPipe, NgIf, PercentPipe} from "@angular/common";
 
 @Component({
   selector: 'app-data-value',
   templateUrl: './data-value.component.html',
   standalone: true,
+  encapsulation: ViewEncapsulation.None,
   imports: [
     CurrencyPipe,
     DatePipe,

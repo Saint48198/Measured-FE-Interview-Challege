@@ -1,56 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../services/dashboard.service';
-import {NgForOf, NgIf, NgSwitch, NgSwitchCase} from "@angular/common";
+import {NgClass, NgForOf, NgIf, NgSwitch, NgSwitchCase} from "@angular/common";
 import {DataPointComponent} from "../components/data-point/data-point.component";
 import {DataSetComponent} from "../components/data-set/data-set.component";
+import {WidthConversionPipe} from "../shared/width-conversion";
+import {FieldDefinition} from "../shared/field-definition.interface";
+import {FieldTitle} from "../shared/field-title.interface";
+import {LayoutElement} from "../shared/layout-element.interface";
+import {SectionElement} from "../shared/section-element.interface";
+import {DashboardData} from "../shared/dashboard-data.interface";
+import {DataSet} from "../shared/data-set.interface";
 
-interface FieldDefinition {
-  [key: string]: any;
-  label: string;
-  format: string;
-  type: string;
-  digitsInfo: string;
-  aggFn: string;
-}
-
-interface FieldTitle {
-  name: string;
-  label?: string;
-}
-
-interface LayoutElement {
-  name: string;  // This should match with data keys
-  type: string;
-  label: string;
-  width: number;
-  elements: SectionElement[];  // Nested elements for data sets
-}
-
-interface SectionElement {
-  name:string;
-  type: string;
-  width: number;
-  label: string;
-  digitsInfo: string;
-  format: string;
-  data: any;
-  fields?: FieldTitle[];
-  fieldDefinitions?: FieldDefinition[];
-}
-
-interface DataPoints {
-  [key: string]: number;
-}
-
-interface DataSet {
-  name: string;
-  data: any[];  // Ideally, you should define a type for the data items
-}
-
-interface DashboardData {
-  dataPoints: DataPoints;
-  dataSets: DataSet[];
-}
 
 @Component({
   selector: 'app-dashboard',
@@ -62,7 +22,9 @@ interface DashboardData {
     DataSetComponent,
     NgForOf,
     NgSwitch,
-    NgSwitchCase
+    NgSwitchCase,
+    WidthConversionPipe,
+    NgClass
   ],
   styleUrls: ['./dashboard.component.css']
 })
@@ -160,5 +122,21 @@ export class DashboardComponent implements OnInit {
     });
 
     return mergedSections;
+  }
+
+  getClassFromColumns(columns: number): string {
+    // may need to expand this to handle more cases
+    switch (columns) {
+      case 12:
+        return 'full'; // For full width, might not need this if 12 is default
+      case 6:
+        return 'half';
+      case 4:
+        return 'one-third';
+      case 3:
+        return 'one-quarter';
+      default:
+        return ''; // Default case if none of these
+    }
   }
 }

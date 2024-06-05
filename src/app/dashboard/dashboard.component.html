@@ -13,13 +13,13 @@
           <span class="dot"></span>
           <span class="dot"></span>
         </div>
-        Reports
+        <span class="btn-txt">Reports</span>
         <span class="caret down"></span>
       </button>
     </menu>
   </header>
-  <div *ngFor="let section of layoutSections" class="dashboard-section">
-    <div [ngSwitch]="section.type">
+  <div class="dashboard-content">
+    <div *ngFor="let section of layoutSections" [ngSwitch]="section.type" [ngClass]="['dashboard-section', getClassFromColumns(section.width)]">
       <app-data-point *ngIf="section.type === 'DATA_POINT'" [elements]="section.elements" [label]="section.label"></app-data-point>
       <app-data-set *ngIf="section.type === 'DATA_SET'" [elements]="section.elements" [label]="section.label"></app-data-set>
     </div>

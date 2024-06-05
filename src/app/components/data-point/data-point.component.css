@@ -1,10 +1,21 @@
+:host {
+  width: fit-content;
+}
+
+.data-point {
+  margin-bottom: 50px;
+}
+
 h3 {
   text-transform: capitalize;
   font-size: 16px;
-  color: #666;
   padding-bottom: 5px;
   border-bottom: 1px solid #eee;
   margin-bottom: 5px;
+}
+
+h4 {
+  margin: 12px 0 12px;
 }
 
 
@@ -14,4 +25,13 @@ h3 {
    margin: 0;
    padding: 0;
    list-style: none;
+ }
+
+ /* ng-deep is used to override the styles of the child components.
+ It is deprecated but I was short on time and turning off encapsulation on data-value component did not work.
+ Another solution is needed for long term use */
+:host ::ng-deep .data-point span.txt-value {
+   font-size: 28px;
+   font-weight: bold;
+   color: #231090;
  }

@@ -1,12 +1,11 @@
 
 
 h3 {
-  font-size: 16px;
-  color: #666;
+  font-size: 18px;
   padding-bottom: 5px;
-  border-bottom: 1px solid #eee;
   margin-bottom: 5px;
-
+  border-bottom: 1px solid #ddd;
+  font-weight: normal;
 }
 
 .data-table {
@@ -16,13 +15,26 @@ h3 {
 
 .data-table th, .data-table td {
   text-align: left;
-  padding: 8px;
+  padding: 10px 8px;
   border: 1px solid #ddd;
+  border-left: none;
+  border-right: none;
   font-size: 14px;
 }
 
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tfoot td {
+  border-top: 1px solid #000;
+  border-bottom: none;
+}
+
 .data-table th {
-  background-color: #f4f4f4;
+  background-color: transparent;
+  color: #231090;
+  border-top: none;
 }
 
 .data-table tr:nth-child(even) {
